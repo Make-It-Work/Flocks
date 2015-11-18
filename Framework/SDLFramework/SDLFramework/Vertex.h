@@ -2,7 +2,7 @@
 #include <vector>
 #include "FWApplication.h"
 class Edge;
-
+class Graph;
 class Vertex
 {
 public:
@@ -24,6 +24,8 @@ public:
 
 	static int distance(Vertex* v1, Vertex* v2);
 
-	Vertex* aMove(Vertex* target);
+	Vertex* aMove(Vertex* target, Graph* g);
+	void resetEfforts(Graph * graph);
+	bool containsVertex(std::vector<Vertex*> list, Vertex * v);
 };
 

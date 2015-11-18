@@ -56,7 +56,7 @@ int main(int args[])
 					{
 					}
 					harePosition = g->vertices[rand() % g->vertices.size()];
-					cowPosition->aMove(harePosition);
+					cowPosition->aMove(harePosition, g);
 					break;
 				
 			}

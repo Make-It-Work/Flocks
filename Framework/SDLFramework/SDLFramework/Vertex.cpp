@@ -1,9 +1,11 @@
 #include "Vertex.h"
 #include "Edge.h"
+#include "Graph.h"
 #include <vector>
 #include "DrawService.h"
-#include <queue>
 #include <map>
+#include <queue>
+#include "VertexComparer.h"
 
 Vertex::Vertex(int xc, int yc)
 {
@@ -11,6 +13,7 @@ Vertex::Vertex(int xc, int yc)
 	y = yc;
 	edges = std::vector<Edge*>();
 }
+Vertex::~Vertex() {}
 
 Edge* Vertex::connect(Vertex* target)
 {
@@ -73,48 +76,47 @@ bool Vertex::isLinked(Vertex* v)
 	return false;
 }
 
-Vertex* Vertex::aMove(Vertex* target)
+Vertex* Vertex::aMove(Vertex* target, Graph* g)
 {
-	printf("start %i target %i \n", this->id, target->id);
 	Vertex* root = this;
-	Vertex* exit = target;
-	std::priority_queue<Vertex *, std::vector<Vertex *>> queue;
+	printf("start %i target %i \n", this->id, target->id);
+	resetEfforts(g);
+	
+	std::priority_queue<Vertex*, std::vector<Vertex *>, VertexComparer> queue;
 	std::vector<Vertex*> visited;
-	std::map<Vertex *, Vertex *> prev;
+	std::map<Vertex*, Vertex*> prev;
 	queue.push(root);
 	root->minEffort = 0;
-	if (root == exit) {
-		//return "You are already at the exit!";
+	std::string wayOut = "";
+	if (root == target) {
+		printf( "You are already at the exit!");
 	}
 	while (!queue.empty()) {
 		root = queue.top();
 		queue.pop();
 		for (Edge* edge : root->edges) {
-			if (!(std::find(visited.begin(), visited.end(), edge->getEnd(root)) != visited.end())) {
-				//printf("edge effort %i root effort %i edge weight %i edge estimate %i \n ", edge->getEnd(root)->minEffort, root->minEffort, edge->getWeight(), edge->getEnd(root)->estimate(target));
-				if (edge->getEnd(root)->minEffort < (root->minEffort + edge->getWeight() + edge->getEnd(root)->estimate(target))) {
-					edge->getEnd(root)->minEffort = (root->minEffort + edge->getWeight() + edge->getEnd(root)->estimate(target));
-					//printf("new effort %i \n", edge->getEnd(root)->minEffort);
+			if (edge->getEnd(root) != nullptr && !containsVertex(visited, edge->getEnd(root))) {
+				if (edge->getEnd(root)->minEffort > root->minEffort + edge->getWeight()) {
+					edge->getEnd(root)->minEffort = root->minEffort + edge->getWeight();
 					prev.insert(std::make_pair(edge->getEnd(root), root));
-					printf("inserting %i %i \n", edge->getEnd(root)->id, root->id);
 				}
 				queue.push(edge->getEnd(root));
 			}
 		}
 		visited.push_back(root);
 	}
-
-	std::vector<Vertex*> path;
-	while (prev.find(exit) != prev.end()) {
-		//wayOut = (prev.at(exit)->getExitName(exit)) + " " + wayOut;
-		path.push_back(prev.at(exit));
-		exit = prev.at(exit);
+	while (prev.find(target) != prev.end()) {
+		printf("id %i", target->id);
+		target = prev.at(target);
 	}
+	return target;
+}
 
-	for each(Vertex* v in path)
-	{
-		printf("id: %i \n", v->id);
+void Vertex::resetEfforts(Graph* graph) {
+	for (Vertex* vertex : graph->getAllVertices()) {
+		vertex->minEffort = INT_MAX;
 	}
-
-	return nullptr;
+}
+bool Vertex::containsVertex(std::vector<Vertex*> list, Vertex* v) {
+	return find(list.begin(), list.end(), v) != list.end();
 }

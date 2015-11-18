@@ -7,4 +7,6 @@ public:
 	Graph(int size);
 	Vertex* first;
 	std::vector<Vertex*> vertices;
+
+	std::vector<Vertex*> getAllVertices() { return vertices; }
 };
