@@ -25,8 +25,8 @@ Graph::Graph(int size)
 			{
 				Edge* e = v->connect(targ);
 				e->id = id++;
-				nConnections++;
 			}
+			nConnections++;
 	
 		}
 	}

@@ -27,5 +27,6 @@ public:
 	Vertex* aMove(Vertex* target, Graph* g);
 	void resetEfforts(Graph * graph);
 	bool containsVertex(std::vector<Vertex*> list, Vertex * v);
+
 };
 

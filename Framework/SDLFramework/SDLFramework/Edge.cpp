@@ -4,7 +4,6 @@ Edge::Edge(Vertex * v1, Vertex * v2)
 {
 	first = v1;
 	second = v2;
-
 	weight = Vertex::distance(first, second);
 }
 

@@ -32,7 +32,7 @@ int main(int args[])
 	printf("weight %i should be 7 \n", e2->getWeight());
 	printf("estimate %i should be same as weight \n", v1->estimate(v2));
 	*/
-	Graph* g = new Graph(5);
+	Graph* g = new Graph(15);
 	Vertex* cowPosition = g->vertices.front();
 	Vertex* harePosition = g->vertices.back();
 
@@ -54,9 +54,10 @@ int main(int args[])
 
 					if (harePosition == cowPosition)
 					{
+						harePosition = g->vertices[rand() % g->vertices.size()];
 					}
-					harePosition = g->vertices[rand() % g->vertices.size()];
-					cowPosition->aMove(harePosition, g);
+					cowPosition = cowPosition->aMove(harePosition, g);
+					printf("cowPos %i harePos %i \n", cowPosition->id, harePosition->id);
 					break;
 				
 			}

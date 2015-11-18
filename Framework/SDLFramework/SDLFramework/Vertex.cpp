@@ -4,7 +4,9 @@
 #include <vector>
 #include "DrawService.h"
 #include <map>
+#include <unordered_map>
 #include <queue>
+#include <concurrent_priority_queue.h>
 #include "VertexComparer.h"
 
 Vertex::Vertex(int xc, int yc)
@@ -19,6 +21,8 @@ Edge* Vertex::connect(Vertex* target)
 {
 	Edge* e = new Edge(this, target);
 	edges.push_back(e);
+	printf("shit %1 \n", id);
+	target->edges.push_back(e);
 	return e;
 }
 
@@ -78,36 +82,37 @@ bool Vertex::isLinked(Vertex* v)
 
 Vertex* Vertex::aMove(Vertex* target, Graph* g)
 {
-	Vertex* root = this;
-	printf("start %i target %i \n", this->id, target->id);
-	resetEfforts(g);
-	
-	std::priority_queue<Vertex*, std::vector<Vertex *>, VertexComparer> queue;
-	std::vector<Vertex*> visited;
-	std::map<Vertex*, Vertex*> prev;
-	queue.push(root);
-	root->minEffort = 0;
-	std::string wayOut = "";
-	if (root == target) {
-		printf( "You are already at the exit!");
-	}
-	while (!queue.empty()) {
-		root = queue.top();
-		queue.pop();
-		for (Edge* edge : root->edges) {
-			if (edge->getEnd(root) != nullptr && !containsVertex(visited, edge->getEnd(root))) {
-				if (edge->getEnd(root)->minEffort > root->minEffort + edge->getWeight()) {
-					edge->getEnd(root)->minEffort = root->minEffort + edge->getWeight();
-					prev.insert(std::make_pair(edge->getEnd(root), root));
-				}
-				queue.push(edge->getEnd(root));
+	Vertex* start = this;
+	std::priority_queue<Vertex*, std::vector<Vertex *>, VertexComparer> frontier;
+	std::unordered_map<Vertex*, Vertex*>& came_from = std::unordered_map<Vertex*, Vertex*>();
+	std::unordered_map<Vertex*, int>& cost_so_far = std::unordered_map<Vertex*, int>();
+	frontier.push(start);
+
+	came_from[start] = start;
+	cost_so_far[start] = 0;
+
+	while (!frontier.empty()) {
+		Vertex* current = frontier.top();
+		frontier.pop();
+
+		if (current == target) {
+			break;
+		}
+
+		for (Edge* e : current->edges) {
+			Vertex* next = e->getEnd(current);
+			int new_cost = cost_so_far[current] + e->getWeight();
+			if (!cost_so_far.count(next) || new_cost < cost_so_far[next]) {
+				cost_so_far[next] = new_cost;
+				int priority = new_cost + next->estimate(target);
+				frontier.push(next);
+				came_from[next] = current;
 			}
 		}
-		visited.push_back(root);
 	}
-	while (prev.find(target) != prev.end()) {
-		printf("id %i", target->id);
-		target = prev.at(target);
+ 	printf("");
+	while (came_from.find(target) != came_from.end()) {
+		target = came_from.at(target);
 	}
 	return target;
 }
