@@ -23,6 +23,7 @@ int main(int args[])
 	
 	application->SetTargetFPS(60);
 	application->SetColor(Color(255, 10, 40, 255));
+	int gSize = 10;
 	/*
 	Vertex* v1 = new Vertex(30, 100);
 	Vertex* v2 = new Vertex(500, 400);
@@ -32,9 +33,9 @@ int main(int args[])
 	printf("weight %i should be 7 \n", e2->getWeight());
 	printf("estimate %i should be same as weight \n", v1->estimate(v2));
 	*/
-	Graph* g = new Graph(15);
+	Graph* g = new Graph(gSize);
 	Vertex* cowPosition = g->vertices.front();
-	Vertex* harePosition = g->vertices.back();
+	Vertex* harePosition = g->vertices[rand() % g->vertices.size()];
 
 
 	//while (true){}
@@ -51,14 +52,32 @@ int main(int args[])
 				application->Quit();
 				break;
 			case SDL_KEYDOWN:
-
+				int code = event.key.keysym.scancode;
+				//printf("code %i \n", code);
+				if (code == 41 || code == 87 || code == 86)
+				{
+					if (code == 87) gSize++;
+					if (code == 86 && gSize > 2) gSize--;
+					printf("building a new graph of %i vertices \n", gSize);
+					g = new Graph(gSize);
+					cowPosition = g->vertices.front();
+					harePosition = g->vertices[rand() % g->vertices.size()];
+				}
+				else
+				{
 					if (harePosition == cowPosition)
 					{
-						harePosition = g->vertices[rand() % g->vertices.size()];
+						while((harePosition == cowPosition))harePosition = g->vertices[rand() % g->vertices.size()];
 					}
-					cowPosition = cowPosition->aMove(harePosition, g);
-					printf("cowPos %i harePos %i \n", cowPosition->id, harePosition->id);
-					break;
+					else
+					{
+						Vertex* next = cowPosition->aMove(harePosition);
+						if (next != nullptr)
+						{
+							cowPosition = next;
+						}
+					}
+				}
 				
 			}
 		}
@@ -72,6 +91,9 @@ int main(int args[])
 		//DrawService::DrawVertWithEdges(application, v1);
 		DrawService::DrawEdge(application, v1->edges.front());
 		*/
+
+		DrawService::cow(application, cowPosition);
+		DrawService::hare(application, harePosition);
 		cowPosition->print(application);
 		
 		// For the background

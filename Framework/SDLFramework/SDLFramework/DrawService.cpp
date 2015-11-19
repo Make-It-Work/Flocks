@@ -24,3 +24,13 @@ void DrawService::DrawEdge(FWApplication* app, Edge* e)
 	//app->DrawText(str, x, y - 10);
 	app->DrawLine(e->first->x, e->first->y, e->second->x, e->second->y);
 }
+
+void DrawService::cow(FWApplication* app, Vertex* v)
+{
+	app->DrawTexture(app->LoadTexture("cow-2.png"), v->x, v->y, 48, 48);
+}
+
+void DrawService::hare(FWApplication* app, Vertex* v)
+{
+	app->DrawTexture(app->LoadTexture("rabbit-2.png"), v->x, v->y, 48, 48);
+}

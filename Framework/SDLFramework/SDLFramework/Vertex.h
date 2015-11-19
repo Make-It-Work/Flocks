@@ -2,7 +2,7 @@
 #include <vector>
 #include "FWApplication.h"
 class Edge;
-class Graph;
+
 class Vertex
 {
 public:
@@ -12,7 +12,8 @@ public:
 	int x;
 	int y;
 	int id;
-	int minEffort;
+	int minEffort = 9999;
+	Edge* prev;
 
 	Edge* connect(Vertex* target);
 	void print(FWApplication* app);
@@ -24,9 +25,6 @@ public:
 
 	static int distance(Vertex* v1, Vertex* v2);
 
-	Vertex* aMove(Vertex* target, Graph* g);
-	void resetEfforts(Graph * graph);
-	bool containsVertex(std::vector<Vertex*> list, Vertex * v);
-
+	Vertex* aMove(Vertex* target);
 };
 

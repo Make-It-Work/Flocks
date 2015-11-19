@@ -16,7 +16,7 @@ Graph::Graph(int size)
 	for each(Vertex* v in vertices)
 	{
 		int nConnections = 0;
-		int nConnections_goal = rand() % 3 + 1;
+		int nConnections_goal = rand() % 2 + 1;
 		while (nConnections < nConnections_goal)
 		{
 			int index = rand() % vertices.size();
@@ -25,8 +25,8 @@ Graph::Graph(int size)
 			{
 				Edge* e = v->connect(targ);
 				e->id = id++;
+				nConnections++;
 			}
-			nConnections++;
 	
 		}
 	}

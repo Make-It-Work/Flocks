@@ -1,13 +1,10 @@
 #include "Vertex.h"
 #include "Edge.h"
-#include "Graph.h"
 #include <vector>
 #include "DrawService.h"
+#include <queue>
 #include <map>
 #include <unordered_map>
-#include <queue>
-#include <concurrent_priority_queue.h>
-#include "VertexComparer.h"
 
 Vertex::Vertex(int xc, int yc)
 {
@@ -15,13 +12,11 @@ Vertex::Vertex(int xc, int yc)
 	y = yc;
 	edges = std::vector<Edge*>();
 }
-Vertex::~Vertex() {}
 
 Edge* Vertex::connect(Vertex* target)
 {
 	Edge* e = new Edge(this, target);
 	edges.push_back(e);
-	printf("shit %1 \n", id);
 	target->edges.push_back(e);
 	return e;
 }
@@ -80,15 +75,16 @@ bool Vertex::isLinked(Vertex* v)
 	return false;
 }
 
-Vertex* Vertex::aMove(Vertex* target, Graph* g)
+Vertex* Vertex::aMove(Vertex* target)
 {
 	Vertex* start = this;
-	std::priority_queue<Vertex*, std::vector<Vertex *>, VertexComparer> frontier;
-	std::unordered_map<Vertex*, Vertex*>& came_from = std::unordered_map<Vertex*, Vertex*>();
-	std::unordered_map<Vertex*, int>& cost_so_far = std::unordered_map<Vertex*, int>();
+	std::unordered_map<Vertex*, Vertex*> came_from;
+	std::unordered_map<Vertex*, int> cost_so_far;
+	Vertex*Location;
+	std::priority_queue<Vertex*> frontier;
 	frontier.push(start);
 
-	came_from[start] = start;
+	//came_from[start] = start;
 	cost_so_far[start] = 0;
 
 	while (!frontier.empty()) {
@@ -110,18 +106,34 @@ Vertex* Vertex::aMove(Vertex* target, Graph* g)
 			}
 		}
 	}
- 	printf("");
-	while (came_from.find(target) != came_from.end()) {
-		target = came_from.at(target);
+	printf("moving from %i to %i \n", id, target->id);
+	printf("====path======== \n");
+	Vertex* ret = nullptr;
+	Vertex* next = target;
+	bool found = false;
+	while (!found)
+	{
+		if (came_from.at(next) != this)
+		{
+			next = came_from.at(next);
+		}
+		else
+		{
+			ret = next;
+			found = true;
+			break;
+		}
 	}
-	return target;
-}
-
-void Vertex::resetEfforts(Graph* graph) {
-	for (Vertex* vertex : graph->getAllVertices()) {
-		vertex->minEffort = INT_MAX;
+	for (auto entry : came_from)
+	{
+		printf("%i from %i \n", entry.first->id, entry.second->id);
+		//printf("%i goes to %i \n", entry.second->id, entry.first->id);
+		if (entry.second == this)
+		{
+			//printf("stepping to %i \n", entry.first->id);
+			//next = entry.first;
+		}
 	}
-}
-bool Vertex::containsVertex(std::vector<Vertex*> list, Vertex* v) {
-	return find(list.begin(), list.end(), v) != list.end();
+	printf("Stepping to %i \n", ret->id);
+	return ret;
 }

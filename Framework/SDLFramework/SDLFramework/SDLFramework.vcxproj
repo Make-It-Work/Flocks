@@ -102,7 +102,6 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="VertexComparer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

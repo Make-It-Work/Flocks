@@ -64,8 +64,5 @@
     <ClInclude Include="DrawService.h">
       <Filter>Views</Filter>
     </ClInclude>
-    <ClInclude Include="VertexComparer.h">
-      <Filter>Models</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
