@@ -4,7 +4,8 @@ class Hare :
 	public Animal
 {
 public:
-	Hare();
+	Hare(Vertex* start);
 	~Hare();
+	void makeAMove(Vertex* target);
 };
 

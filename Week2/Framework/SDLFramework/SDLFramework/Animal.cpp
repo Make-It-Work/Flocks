@@ -2,8 +2,9 @@
 
 
 
-Animal::Animal()
+Animal::Animal(Vertex* start)
 {
+	position = start;
 }
 
 

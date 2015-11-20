@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Week1">
-      <UniqueIdentifier>{6469432c-2a1e-411f-a745-f6b8fe556dad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Models">
       <UniqueIdentifier>{37ff7cdb-984e-4308-aabb-8199f9d94820}</UniqueIdentifier>
     </Filter>
@@ -38,6 +35,15 @@
     <ClCompile Include="DrawService.cpp">
       <Filter>Views</Filter>
     </ClCompile>
+    <ClCompile Include="Animal.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Cow.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Hare.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -63,6 +69,15 @@
     </ClInclude>
     <ClInclude Include="DrawService.h">
       <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Cow.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Hare.h">
+      <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

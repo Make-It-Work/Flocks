@@ -1,10 +1,11 @@
 #pragma once
 #include "Animal.h"
-
-class Cow : Animal
+class Cow :
+	public Animal
 {
 public:
-	Cow();
+	Cow(Vertex* start);
 	~Cow();
+	void makeAMove(Vertex* target);
 };
 

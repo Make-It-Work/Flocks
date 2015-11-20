@@ -5,6 +5,8 @@
 #include "SDL_timer.h"
 #include <time.h>
 
+#include "Hare.h"
+#include "Cow.h"
 #include "Vertex.h"
 #include "Edge.h"
 #include "Graph.h"
@@ -24,19 +26,10 @@ int main(int args[])
 	application->SetTargetFPS(60);
 	application->SetColor(Color(255, 10, 40, 255));
 	int gSize = 10;
-	/*
-	Vertex* v1 = new Vertex(30, 100);
-	Vertex* v2 = new Vertex(500, 400);
-
-	v1->connect(v2);
-	Edge* e2 = v1->edges.front();
-	printf("weight %i should be 7 \n", e2->getWeight());
-	printf("estimate %i should be same as weight \n", v1->estimate(v2));
-	*/
+	
 	Graph* g = new Graph(gSize);
-	Vertex* cowPosition = g->vertices.front();
-	Vertex* harePosition = g->vertices[rand() % g->vertices.size()];
-
+	Cow* cow = new Cow(g->vertices[rand() % g->vertices.size()]);
+	Hare* hare = new Hare(g->vertices[rand() % g->vertices.size()]);
 
 	//while (true){}
 	while (application->IsRunning())
@@ -60,22 +53,20 @@ int main(int args[])
 					if (code == 86 && gSize > 2) gSize--;
 					printf("building a new graph of %i vertices \n", gSize);
 					g = new Graph(gSize);
-					cowPosition = g->vertices.front();
-					harePosition = g->vertices[rand() % g->vertices.size()];
+					cow->setPosition(g->vertices.front());
+					hare->setPosition(g->vertices[rand() % g->vertices.size()]);
 				}
 				else
 				{
-					if (harePosition == cowPosition)
+					if (hare->getPosition() == cow->getPosition())
 					{
-						while((harePosition == cowPosition))harePosition = g->vertices[rand() % g->vertices.size()];
+						while ((cow->getPosition() == hare->getPosition())) {
+							hare->setPosition(g->vertices[rand() % g->vertices.size()]);
+						};
 					}
 					else
 					{
-						Vertex* next = cowPosition->aMove(harePosition);
-						if (next != nullptr)
-						{
-							cowPosition = next;
-						}
+						cow->makeAMove(hare->getPosition());
 					}
 				}
 				
@@ -83,18 +74,10 @@ int main(int args[])
 		}
 		
 		application->SetColor(Color(0, 0, 0, 255));
-		//application->DrawText("Welcome to KMint", 800 / 2, 600 / 2);
-		//draw first vertices and edges
-		/*
-		DrawService::DrawVert(application, v1);
-		DrawService::DrawVert(application, v2);
-		//DrawService::DrawVertWithEdges(application, v1);
-		DrawService::DrawEdge(application, v1->edges.front());
-		*/
 
-		DrawService::cow(application, cowPosition);
-		DrawService::hare(application, harePosition);
-		cowPosition->print(application);
+		DrawService::cow(application, cow->getPosition());
+		DrawService::hare(application, hare->getPosition());
+		cow->getPosition()->print(application);
 		
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));

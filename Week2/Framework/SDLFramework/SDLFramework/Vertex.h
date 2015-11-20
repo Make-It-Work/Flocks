@@ -25,6 +25,5 @@ public:
 
 	static int distance(Vertex* v1, Vertex* v2);
 
-	Vertex* aMove(Vertex* target);
 };
 
