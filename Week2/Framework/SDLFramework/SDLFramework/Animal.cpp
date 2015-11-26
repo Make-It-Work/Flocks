@@ -11,3 +11,4 @@ Animal::Animal(Vertex* start)
 Animal::~Animal()
 {
 }
+

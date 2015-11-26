@@ -13,6 +13,13 @@ Cow::~Cow()
 {
 }
 
+void Cow::update() {
+	bored++;
+	if (current_state != nullptr) {
+		current_state->execute(this);
+	}
+}
+
 void Cow::makeAMove(Vertex* target) {
 	Vertex* start = position;
 	std::unordered_map<Vertex*, Vertex*> came_from;
@@ -73,4 +80,10 @@ void Cow::makeAMove(Vertex* target) {
 	}
 	printf("Stepping to %i \n", ret->id);
 	position = ret;
+}
+
+void Cow::changeState(AnimalState* new_state) {
+	current_state->exit(this);
+	current_state = new_state;
+	new_state->enter(this);
 }

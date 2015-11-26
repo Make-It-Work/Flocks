@@ -44,6 +44,12 @@
     <ClCompile Include="Hare.cpp">
       <Filter>Models</Filter>
     </ClCompile>
+    <ClCompile Include="AnimalState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -78,6 +84,12 @@
     </ClInclude>
     <ClInclude Include="Hare.h">
       <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimalState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pill.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
