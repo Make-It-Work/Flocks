@@ -7,7 +7,9 @@ public:
 	Hare(Vertex* start);
 	~Hare();
 	void makeAMove(Vertex* target);
-	void update() {}
+	void update();
 	void changeState(AnimalState* new_state);
+
+	std::string getType() { return "Hare"; }
 };
 

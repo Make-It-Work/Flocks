@@ -20,3 +20,9 @@ void Hare::changeState(AnimalState* new_state) {
 	current_state = new_state;
 	new_state->enter(this);
 }
+
+void Hare::update() {
+	if (current_state != nullptr) {
+		position = current_state->execute(this);
+	}
+}

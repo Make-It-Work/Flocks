@@ -2,10 +2,12 @@
 #include <unordered_map>
 #include <queue>
 #include "Edge.h"
+#include "WanderingState.h"
 
 Cow::Cow(Vertex* start)
 {
 	position = start;
+	current_state = WanderingState::cowWanderingInstance();
 }
 
 
@@ -16,7 +18,7 @@ Cow::~Cow()
 void Cow::update() {
 	bored++;
 	if (current_state != nullptr) {
-		current_state->execute(this);
+		position = current_state->execute(this);
 	}
 }
 

@@ -61,12 +61,14 @@ int main(int args[])
 					if (hare->getPosition() == cow->getPosition())
 					{
 						while ((cow->getPosition() == hare->getPosition())) {
-							hare->setPosition(g->vertices[rand() % g->vertices.size()]);
+							//hare->setPosition(g->vertices[rand() % g->vertices.size()]);
+							hare->update();
 						};
 					}
 					else
 					{
-						cow->makeAMove(hare->getPosition());
+						//cow->makeAMove(hare->getPosition());
+						cow->update();
 					}
 				}
 				

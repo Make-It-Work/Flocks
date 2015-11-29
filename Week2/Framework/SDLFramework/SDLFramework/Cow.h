@@ -9,5 +9,7 @@ public:
 	void makeAMove(Vertex* target);
 	void update();
 	void changeState(AnimalState* new_state);
+
+	std::string getType() { return "Cow"; }
 };
 

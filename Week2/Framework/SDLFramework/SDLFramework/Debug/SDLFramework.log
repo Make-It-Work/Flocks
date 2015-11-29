@@ -1,6 +1,22 @@
-﻿Build started 26-11-2015 11:11:06.
+﻿Build started 29-11-2015 15:32:35.
      1>Project "C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\SDLFramework.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\../../SDL2-2.0.3/include" /I"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\../../SDL2_ttf-2.0.12/include" /I"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\../../SDL2_image-2.0.0/include" /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Animal.cpp AnimalState.cpp Cow.cpp Hare.cpp Main.cpp WanderingState.cpp
+         WanderingState.cpp
+     1>c:\users\suzanne\documents\school\minor\kmint\git kmint 1911\kmint\week2\framework\sdlframework\sdlframework\wanderingstate.cpp(28): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'std::string'
+     1>c:\users\suzanne\documents\school\minor\kmint\git kmint 1911\kmint\week2\framework\sdlframework\sdlframework\wanderingstate.cpp(33): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'std::string'
+     1>c:\users\suzanne\documents\school\minor\kmint\git kmint 1911\kmint\week2\framework\sdlframework\sdlframework\wanderingstate.cpp(43): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'std::string'
+         Main.cpp
+     1>c:\users\suzanne\documents\school\minor\kmint\git kmint 1911\kmint\week2\framework\sdlframework\sdlframework\main.cpp(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+         Hare.cpp
+         Cow.cpp
+     1>c:\users\suzanne\documents\school\minor\kmint\git kmint 1911\kmint\week2\framework\sdlframework\sdlframework\cow.cpp(29): warning C4101: 'Location': unreferenced local variable
+         Generating Code...
+         Compiling...
+         AnimalState.cpp
+         Animal.cpp
+         Generating Code...
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\Debug\SDLFramework.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\../../SDL2-2.0.3/lib/x86" /LIBPATH:"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\../../SDL2_ttf-2.0.12/lib/x86" /LIBPATH:"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\../../SDL2_image-2.0.0/lib/x86" /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" SDL2.lib SDL2main.lib SDL2test.lib SDL2_ttf.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\Debug\SDLFramework.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\Debug\SDLFramework.lib" /MACHINE:X86 Debug\Animal.obj
          Debug\AnimalState.obj
          Debug\Cow.obj
@@ -12,9 +28,10 @@
          Debug\Main.obj
          Debug\Pill.obj
          Debug\Vertex.obj
+         Debug\WanderingState.obj
          SDLFramework.vcxproj -> C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\Debug\SDLFramework.exe
      1>Done Building Project "C:\Users\Suzanne\Documents\School\Minor\KMINT\Git KMINT 1911\KMINT\Week2\Framework\SDLFramework\SDLFramework\SDLFramework.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.76
+Time Elapsed 00:00:03.48

@@ -15,6 +15,9 @@
     <Filter Include="Views">
       <UniqueIdentifier>{20ba9cd2-0249-4040-9b59-6aadb8d0cbd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models\States">
+      <UniqueIdentifier>{53726f87-b9cf-473b-9023-47f1fb5aa777}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -44,10 +47,13 @@
     <ClCompile Include="Hare.cpp">
       <Filter>Models</Filter>
     </ClCompile>
-    <ClCompile Include="AnimalState.cpp">
+    <ClCompile Include="Pill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pill.cpp">
+    <ClCompile Include="AnimalState.cpp">
+      <Filter>Models\States</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderingState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,10 +91,13 @@
     <ClInclude Include="Hare.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="AnimalState.h">
+    <ClInclude Include="Pill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pill.h">
+    <ClInclude Include="AnimalState.h">
+      <Filter>Models\States</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

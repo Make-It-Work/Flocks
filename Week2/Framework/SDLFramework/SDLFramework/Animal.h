@@ -20,5 +20,7 @@ public:
 	virtual void makeAMove(Vertex* target) = 0;
 	Vertex* getPosition() { return position; }
 	void setPosition(Vertex* target) { position = target; }
+
+	virtual std::string getType() = 0;
 };
 
