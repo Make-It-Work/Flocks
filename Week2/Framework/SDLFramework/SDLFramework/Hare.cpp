@@ -1,8 +1,10 @@
 #include "Hare.h"
+#include "WanderingState.h"
 
 Hare::Hare(Vertex* start)
 {
 	position = start;
+	current_state = WanderingState::cowWanderingInstance();
 }
 
 
