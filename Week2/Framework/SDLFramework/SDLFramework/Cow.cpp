@@ -3,6 +3,9 @@
 #include <queue>
 #include "Edge.h"
 #include "WanderingState.h"
+#include "SearchingState.h"
+#include "HuntingState.h"
+#include "Item.h"
 
 Cow::Cow(Vertex* start)
 {
@@ -18,7 +21,15 @@ Cow::~Cow()
 void Cow::update() {
 	bored++;
 	if (current_state != nullptr) {
-		position = current_state->execute(this);
+		current_state->execute(this);
+	}
+	if (bored == 5)
+	{
+		changeState(SearchingState::cowSearchingInstance());
+	}
+	if (goal->location == getPosition())
+	{
+		changeState(HuntingState::cowHuntingInstance());
 	}
 }
 

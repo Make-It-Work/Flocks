@@ -92,8 +92,10 @@
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Hare.cpp" />
+    <ClCompile Include="HuntingState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pill.cpp" />
+    <ClCompile Include="SearchState.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WanderingState.cpp" />
   </ItemGroup>
@@ -110,8 +112,11 @@
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Hare.h" />
+    <ClInclude Include="HuntingState.h" />
     <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Pill.h" />
+    <ClInclude Include="SearchState.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WanderingState.h" />
   </ItemGroup>

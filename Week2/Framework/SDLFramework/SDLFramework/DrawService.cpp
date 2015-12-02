@@ -34,3 +34,8 @@ void DrawService::hare(FWApplication* app, Vertex* v)
 {
 	app->DrawTexture(app->LoadTexture("rabbit-2.png"), v->x, v->y, 48, 48);
 }
+
+void DrawService::pill(FWApplication* app, Vertex* v)
+{
+	app->DrawTexture(app->LoadTexture("pill.png"), v->x, v->y, 48, 48);
+}

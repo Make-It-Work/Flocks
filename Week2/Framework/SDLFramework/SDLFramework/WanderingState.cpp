@@ -25,20 +25,22 @@ WanderingState* WanderingState::hareWanderingInstance()
 
 void WanderingState::enter(Animal* animal)
 {
-	printf("%i entering wandering state", animal->getType());
+	printf("%s entering wandering state \n", animal->getType().c_str());
 }
 
 Vertex* WanderingState::execute(Animal* animal)
 {
-	printf("%i executing wandering state", animal->getType());
+	printf("%s executing wandering state \n", animal->getType().c_str());
 	std::vector<Edge*> edges = animal->getPosition()->edges;
 	//Pick an edge
 	int randIndex = rand() % edges.size();
-	return edges[randIndex]->getEnd(animal->getPosition());
+	Vertex* target = edges[randIndex]->getEnd(animal->getPosition());
+	animal->setPosition(target);
+	return target;
 
 }
 
 void WanderingState::exit(Animal* animal)
 {
-	printf("%i exiting wandering state", animal->getType());
+	printf("%s exiting wandering state \n", animal->getType().c_str());
 }

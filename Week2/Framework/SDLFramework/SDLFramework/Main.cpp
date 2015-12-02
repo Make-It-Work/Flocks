@@ -5,11 +5,10 @@
 #include "SDL_timer.h"
 #include <time.h>
 
-#include "Hare.h"
-#include "Cow.h"
-#include "Vertex.h"
-#include "Edge.h"
 #include "Graph.h"
+#include "Pill.h"
+#include "Cow.h"
+#include "Hare.h"
 #include "DrawService.h"
 
 int main(int args[])
@@ -28,8 +27,11 @@ int main(int args[])
 	int gSize = 10;
 	
 	Graph* g = new Graph(gSize);
-	Cow* cow = new Cow(g->vertices[rand() % g->vertices.size()]);
+	Pill* p = new Pill(g->vertices[rand() % g->vertices.size()]);
 	Hare* hare = new Hare(g->vertices[rand() % g->vertices.size()]);
+	Cow* cow = new Cow(g->vertices[rand() % g->vertices.size()]);
+	cow->goal = (Item*)p;
+	cow->prey = hare;
 
 	//while (true){}
 	while (application->IsRunning())
@@ -71,6 +73,7 @@ int main(int args[])
 
 		DrawService::cow(application, cow->getPosition());
 		DrawService::hare(application, hare->getPosition());
+		DrawService::pill(application, p->location);
 		cow->getPosition()->print(application);
 		
 		// For the background

@@ -54,7 +54,13 @@
       <Filter>Models\States</Filter>
     </ClCompile>
     <ClCompile Include="WanderingState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Models\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchState.cpp">
+      <Filter>Models\States</Filter>
+    </ClCompile>
+    <ClCompile Include="HuntingState.cpp">
+      <Filter>Models\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,8 +103,17 @@
     <ClInclude Include="AnimalState.h">
       <Filter>Models\States</Filter>
     </ClInclude>
+    <ClInclude Include="SearchState.h">
+      <Filter>Models\States</Filter>
+    </ClInclude>
     <ClInclude Include="WanderingState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Models\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="HuntingState.h">
+      <Filter>Models\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 #pragma once
 #include "Vertex.h"
-#include "Pill.h"
 #include "AnimalState.h"
+
+class Item;
 class Animal
 {
 protected:
@@ -22,5 +23,7 @@ public:
 	void setPosition(Vertex* target) { position = target; }
 
 	virtual std::string getType() = 0;
+	Item* goal;
+	Animal* prey;
 };
 

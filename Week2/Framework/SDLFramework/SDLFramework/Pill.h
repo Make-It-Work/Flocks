@@ -2,12 +2,13 @@
 #include "Item.h"
 #include <string>
 
+class Vertex;
 class Pill
-	: Item
+	: public Item
 {
 public:
 	Pill(Vertex* v) { location = v; };
-	~Pill();
+	~Pill() {};
 	const std::string texture = "pill.png";
 };
 

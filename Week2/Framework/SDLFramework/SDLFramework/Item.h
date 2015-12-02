@@ -1,10 +1,13 @@
 #pragma once
+#include <string>
+#include "Vertex.h"
 
 class Item
 {
 public:
-	Item();
-	~Item();
-	const std::string texture;
+	Item() {};
+	Item(Vertex* v) { location = v; };
+	~Item() {};
+	std::string texture;
 	Vertex* location;
 };
