@@ -70,10 +70,8 @@ int main(int args[])
 				}
 				else
 				{
-					//hare->setPosition(g->vertices[rand() % g->vertices.size()]);
-					hare->update();
-					//cow->makeAMove(hare->getPosition());
 					cow->update();
+					hare->update();
 				}
 				
 			}

@@ -65,33 +65,35 @@ void Cow::makeAMove(Vertex* target) {
 	}
 	printf("moving from %i to %i \n", position->id, target->id);
 	printf("====path======== \n");
-	Vertex* ret = nullptr;
+	Vertex* ret = position;
 	Vertex* next = target;
 	bool found = false;
-	while (!found)
-	{
-		if (came_from.at(next) != position)
+	if (came_from.size() > 0) {
+		while (!found)
 		{
-			next = came_from.at(next);
+			if (came_from.at(next) != position)
+			{
+				next = came_from.at(next);
+			}
+			else
+			{
+				ret = next;
+				found = true;
+				break;
+			}
 		}
-		else
+		for (auto entry : came_from)
 		{
-			ret = next;
-			found = true;
-			break;
+			printf("%i from %i \n", entry.first->id, entry.second->id);
+			//printf("%i goes to %i \n", entry.second->id, entry.first->id);
+			if (entry.second == position)
+			{
+				//printf("stepping to %i \n", entry.first->id);
+				//next = entry.first;
+			}
 		}
+		printf("Stepping to %i \n", ret->id);
 	}
-	for (auto entry : came_from)
-	{
-		printf("%i from %i \n", entry.first->id, entry.second->id);
-		//printf("%i goes to %i \n", entry.second->id, entry.first->id);
-		if (entry.second == position)
-		{
-			//printf("stepping to %i \n", entry.first->id);
-			//next = entry.first;
-		}
-	}
-	printf("Stepping to %i \n", ret->id);
 	position = ret;
 }
 
