@@ -10,6 +10,8 @@
 #include "Cow.h"
 #include "Hare.h"
 #include "DrawService.h"
+#include "Weapon.h"
+#include "Pill.h"
 
 int main(int args[])
 {
@@ -55,8 +57,15 @@ int main(int args[])
 					if (code == 86 && gSize > 2) gSize--;
 					printf("building a new graph of %i vertices \n", gSize);
 					g = new Graph(gSize);
+
 					cow->setPosition(g->vertices.front());
 					hare->setPosition(g->vertices[rand() % g->vertices.size()]);
+					if (!weapon->hasOwner()) {
+						weapon->setLocation(g->vertices[rand() % g->vertices.size()]);
+					}
+					if (!pill->hasOwner()) {
+						pill->setLocation(g->vertices[rand() % g->vertices.size()]);
+					}
 				}
 				else
 				{
@@ -74,6 +83,7 @@ int main(int args[])
 		DrawService::cow(application, cow->getPosition());
 		DrawService::hare(application, hare->getPosition());
 		DrawService::pill(application, p->location);
+		DrawService::weapon(application, weapon->getLocation());
 		cow->getPosition()->print(application);
 		
 		// For the background

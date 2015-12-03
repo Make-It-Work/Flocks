@@ -4,12 +4,12 @@
 #include "Vertex.h"
 
 class Weapon
-	: Item
+	: public Item
 {
 public:
 	Weapon(Vertex* v) {
 		location = v;
 	};
-	~Weapon();
+	~Weapon() {};
 	const std::string texture = "gun-metal.png";
 };

@@ -39,3 +39,8 @@ void DrawService::pill(FWApplication* app, Vertex* v)
 {
 	app->DrawTexture(app->LoadTexture("pill.png"), v->x, v->y, 48, 48);
 }
+
+void DrawService::weapon(FWApplication* app, Vertex* v)
+{
+	app->DrawTexture(app->LoadTexture("gun-metal.png"), v->x, v->y, 48, 48);
+}

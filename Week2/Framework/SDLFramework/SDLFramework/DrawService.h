@@ -14,4 +14,5 @@ public:
 	static void cow(FWApplication* app, Vertex* v);
 	static void hare(FWApplication* app, Vertex* v);
 	static void pill(FWApplication* app, Vertex* v);
+	static void weapon(FWApplication* app, Vertex* v);
 };
