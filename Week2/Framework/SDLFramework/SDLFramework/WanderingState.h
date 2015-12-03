@@ -4,7 +4,7 @@ class WanderingState :
 	public AnimalState
 {
 private:
-	WanderingState();
+	WanderingState() { name = "wandering"; }
 public:
 	~WanderingState();
 	static WanderingState* cowWanderingInstance();

@@ -3,9 +3,6 @@
 #include "Edge.h"
 #include "item.h"
 
-HuntingState::HuntingState()
-{
-}
 
 
 HuntingState::~HuntingState()
@@ -25,9 +22,7 @@ void HuntingState::enter(Animal* animal)
 
 Vertex* HuntingState::execute(Animal* animal)
 {
-	animal->makeAMove(animal->prey->getPosition());
-	return nullptr;
-
+	return animal->makeAStarMove(animal->prey->getPosition());
 }
 
 void HuntingState::exit(Animal* animal)

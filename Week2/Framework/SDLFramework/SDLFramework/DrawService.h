@@ -11,8 +11,8 @@ public:
 	static void DrawVertWithEdges(FWApplication* app, Vertex* v);
 	static void DrawEdge(FWApplication* app, Edge* e);
 
-	static void cow(FWApplication* app, Vertex* v);
-	static void hare(FWApplication* app, Vertex* v);
+	static void cow(FWApplication* app, Vertex* v, std::string state);
+	static void hare(FWApplication* app, Vertex* v, std::string state);
 	static void pill(FWApplication* app, Vertex* v);
 	static void weapon(FWApplication* app, Vertex* v);
 };

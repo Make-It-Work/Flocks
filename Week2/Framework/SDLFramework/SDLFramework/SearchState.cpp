@@ -5,6 +5,7 @@
 
 SearchingState::SearchingState()
 {
+	name = "searching";
 }
 
 
@@ -31,9 +32,7 @@ void SearchingState::enter(Animal* animal)
 
 Vertex* SearchingState::execute(Animal* animal)
 {
-	animal->makeAMove(animal->goal->getLocation());
-	return nullptr;
-
+	return animal->makeAStarMove(animal->goal->getLocation());
 }
 
 void SearchingState::exit(Animal* animal)

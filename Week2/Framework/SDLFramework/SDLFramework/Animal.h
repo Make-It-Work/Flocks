@@ -18,11 +18,13 @@ public:
 	virtual void update() = 0;
 	virtual void changeState(AnimalState* new_state) = 0;
 
-	virtual void makeAMove(Vertex* target) = 0;
+	Vertex* makeAStarMove(Vertex* target);
 	int getBored() { return bored; }
 	void setBored(int b) { bored = b; }
 	Vertex* getPosition() { return position; }
 	void setPosition(Vertex* target) { position = target; }
+
+	std::string getState() { return current_state->getName(); }
 
 	virtual std::string getType() = 0;
 	Item* goal;

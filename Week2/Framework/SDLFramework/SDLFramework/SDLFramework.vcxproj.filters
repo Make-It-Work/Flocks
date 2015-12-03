@@ -47,9 +47,6 @@
     <ClCompile Include="Hare.cpp">
       <Filter>Models</Filter>
     </ClCompile>
-    <ClCompile Include="Pill.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AnimalState.cpp">
       <Filter>Models\States</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="HuntingState.cpp">
       <Filter>Models\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Pill.cpp">
+      <Filter>Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,9 +97,6 @@
     <ClInclude Include="Hare.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="Pill.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnimalState.h">
       <Filter>Models\States</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="HuntingState.h">
       <Filter>Models\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Pill.h">
+      <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

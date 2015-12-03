@@ -3,11 +3,6 @@
 #include "Edge.h"
 #include "SearchingState.h"
 
-WanderingState::WanderingState()
-{
-}
-
-
 WanderingState::~WanderingState()
 {
 }

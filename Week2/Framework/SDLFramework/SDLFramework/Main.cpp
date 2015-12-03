@@ -79,8 +79,8 @@ int main(int args[])
 		
 		application->SetColor(Color(0, 0, 0, 255));
 
-		DrawService::cow(application, cow->getPosition());
-		DrawService::hare(application, hare->getPosition());
+		DrawService::cow(application, cow->getPosition(), cow->getState());
+		DrawService::hare(application, hare->getPosition(), hare->getState());
 		if (!p->hasOwner()) { DrawService::pill(application, p->getLocation()); }
 		if (!weapon->hasOwner()) { DrawService::weapon(application, weapon->getLocation()); }
 		cow->getPosition()->print(application);

@@ -5,7 +5,7 @@ class HuntingState :
 	public AnimalState
 {
 private:
-	HuntingState();
+	HuntingState() { name = "hunting"; }
 public:
 	~HuntingState();
 	static HuntingState* cowHuntingInstance();
