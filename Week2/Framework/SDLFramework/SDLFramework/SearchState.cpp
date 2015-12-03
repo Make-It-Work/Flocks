@@ -38,5 +38,6 @@ Vertex* SearchingState::execute(Animal* animal)
 
 void SearchingState::exit(Animal* animal)
 {
+	animal->goal->setOwner(animal);
 	printf("%s exiting Searching state \n", animal->getType().c_str());
 }

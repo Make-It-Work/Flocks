@@ -10,6 +10,7 @@ public:
 	~Item() {};
 	std::string texture;
 	bool hasOwner() { return owner != nullptr; }
+	void setOwner(Animal* animal) { owner = animal; }
 	Vertex* getLocation() { return location; }
 	void setLocation(Vertex* v) { location = v; }
 protected:

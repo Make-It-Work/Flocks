@@ -81,8 +81,8 @@ int main(int args[])
 
 		DrawService::cow(application, cow->getPosition());
 		DrawService::hare(application, hare->getPosition());
-		DrawService::pill(application, p->getLocation());
-		DrawService::weapon(application, weapon->getLocation());
+		if (!p->hasOwner()) { DrawService::pill(application, p->getLocation()); }
+		if (!weapon->hasOwner()) { DrawService::weapon(application, weapon->getLocation()); }
 		cow->getPosition()->print(application);
 		
 		// For the background
