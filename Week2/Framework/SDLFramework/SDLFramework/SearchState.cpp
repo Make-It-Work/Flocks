@@ -31,7 +31,7 @@ void SearchingState::enter(Animal* animal)
 
 Vertex* SearchingState::execute(Animal* animal)
 {
-	animal->makeAMove(animal->goal->location);
+	animal->makeAMove(animal->goal->getLocation());
 	return nullptr;
 
 }

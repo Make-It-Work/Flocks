@@ -29,6 +29,7 @@ int main(int args[])
 	int gSize = 10;
 	
 	Graph* g = new Graph(gSize);
+	Weapon* weapon = new Weapon(g->vertices[rand() % g->vertices.size()]);
 	Pill* p = new Pill(g->vertices[rand() % g->vertices.size()]);
 	Hare* hare = new Hare(g->vertices[rand() % g->vertices.size()]);
 	Cow* cow = new Cow(g->vertices[rand() % g->vertices.size()]);
@@ -63,8 +64,8 @@ int main(int args[])
 					if (!weapon->hasOwner()) {
 						weapon->setLocation(g->vertices[rand() % g->vertices.size()]);
 					}
-					if (!pill->hasOwner()) {
-						pill->setLocation(g->vertices[rand() % g->vertices.size()]);
+					if (!p->hasOwner()) {
+						p->setLocation(g->vertices[rand() % g->vertices.size()]);
 					}
 				}
 				else
@@ -82,7 +83,7 @@ int main(int args[])
 
 		DrawService::cow(application, cow->getPosition());
 		DrawService::hare(application, hare->getPosition());
-		DrawService::pill(application, p->location);
+		DrawService::pill(application, p->getLocation());
 		DrawService::weapon(application, weapon->getLocation());
 		cow->getPosition()->print(application);
 		

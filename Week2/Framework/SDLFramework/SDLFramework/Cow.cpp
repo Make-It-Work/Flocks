@@ -27,7 +27,7 @@ void Cow::update() {
 	{
 		changeState(SearchingState::cowSearchingInstance());
 	}
-	if (goal->location == getPosition())
+	if (goal->getLocation() == getPosition())
 	{
 		changeState(HuntingState::cowHuntingInstance());
 	}
