@@ -95,6 +95,16 @@ int main(int args[])
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));
 
+		if (cow->getPosition() == hare->getPosition() && cow->getState() == "wandering" && hare->getState() == "wandering") {
+			g = new Graph(gSize);
+			cow->setPosition(g->vertices.front());
+			hare->setPosition(g->vertices[rand() % g->vertices.size()]);
+			weapon->setLocation(g->vertices[rand() % g->vertices.size()]);
+			p->setLocation(g->vertices[rand() % g->vertices.size()]);
+			weapon->setOwner(nullptr);
+			p->setOwner(nullptr);
+		}
+
 
 		application->UpdateGameObjects();
 		application->RenderGameObjects();

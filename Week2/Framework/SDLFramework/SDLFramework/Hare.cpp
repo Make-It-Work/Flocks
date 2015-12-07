@@ -39,7 +39,7 @@ void Hare::update() {
 	if (goal->hasOwner()) {
 		changeState(HuntingState::hareHuntingInstance());
 	}
-	if (prey->getState() == "hunting" && position == prey->getPosition()) {
+	if (position == prey->getPosition()) {
 		changeState(WanderingState::hareWanderingInstance());
 	}
 }
