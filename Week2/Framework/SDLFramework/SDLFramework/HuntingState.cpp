@@ -15,6 +15,12 @@ HuntingState* HuntingState::cowHuntingInstance()
 	return &cowInstance;
 }
 
+HuntingState* HuntingState::hareHuntingInstance()
+{
+	static HuntingState hareInstance;
+	return &hareInstance;
+}
+
 void HuntingState::enter(Animal* animal)
 {
 	printf("%s entering Hunting state \n", animal->getType().c_str());

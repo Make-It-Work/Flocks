@@ -5,6 +5,7 @@
 #include "WanderingState.h"
 #include "SearchingState.h"
 #include "HuntingState.h"
+#include "AnimalState.h"
 #include "Item.h"
 
 Cow::Cow(Vertex* start)
@@ -27,9 +28,12 @@ void Cow::update() {
 	{
 		changeState(SearchingState::cowSearchingInstance());
 	}
-	if (goal->getLocation() == getPosition())
+	if (goal->getLocation() == getPosition() && current_state == SearchingState::cowSearchingInstance())
 	{
 		changeState(HuntingState::cowHuntingInstance());
+	}
+	if (getState() == "hunting" && prey->getPosition() == position) {
+		changeState(WanderingState::cowWanderingInstance());
 	}
 }
 

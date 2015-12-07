@@ -1,5 +1,10 @@
 #include "Hare.h"
 #include "WanderingState.h"
+#include "Edge.h"
+#include "Cow.h"
+#include "SearchingState.h"
+#include "HuntingState.h"
+#include "Item.h"
 
 Hare::Hare(Vertex* start)
 {
@@ -21,5 +26,20 @@ void Hare::changeState(AnimalState* new_state) {
 void Hare::update() {
 	if (current_state != nullptr) {
 		position = current_state->execute(this);
+	}
+	bool cowClose = false;
+	for (Edge* e : position->edges) {
+		if (e->getEnd(position) == prey->getPosition()) {
+			cowClose = true;
+		}
+	}
+	if (cowClose) {
+		changeState(SearchingState::hareSearchingInstance());
+	}
+	if (goal->hasOwner()) {
+		changeState(HuntingState::hareHuntingInstance());
+	}
+	if (prey->getState() == "hunting" && position == prey->getPosition()) {
+		changeState(WanderingState::hareWanderingInstance());
 	}
 }

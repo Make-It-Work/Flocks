@@ -13,6 +13,13 @@
 #include "Weapon.h"
 #include "Pill.h"
 
+Graph* g = nullptr;
+Weapon* weapon = nullptr;
+Pill* p = nullptr;
+Hare* hare = nullptr;
+Cow* cow = nullptr;
+int gSize = 10;
+
 int main(int args[])
 {
 	srand(time(NULL));
@@ -26,15 +33,17 @@ int main(int args[])
 	
 	application->SetTargetFPS(60);
 	application->SetColor(Color(255, 10, 40, 255));
-	int gSize = 10;
 	
-	Graph* g = new Graph(gSize);
-	Weapon* weapon = new Weapon(g->vertices[rand() % g->vertices.size()]);
-	Pill* p = new Pill(g->vertices[rand() % g->vertices.size()]);
-	Hare* hare = new Hare(g->vertices[rand() % g->vertices.size()]);
-	Cow* cow = new Cow(g->vertices[rand() % g->vertices.size()]);
+	
+	g = new Graph(gSize);
+	weapon = new Weapon(g->vertices[rand() % g->vertices.size()]);
+	p = new Pill(g->vertices[rand() % g->vertices.size()]);
+	hare = new Hare(g->vertices[rand() % g->vertices.size()]);
+	cow = new Cow(g->vertices[rand() % g->vertices.size()]);
 	cow->goal = (Item*)p;
 	cow->prey = hare;
+	hare->prey = cow;
+	hare->goal = weapon;
 
 	//while (true){}
 	while (application->IsRunning())
@@ -61,12 +70,10 @@ int main(int args[])
 
 					cow->setPosition(g->vertices.front());
 					hare->setPosition(g->vertices[rand() % g->vertices.size()]);
-					if (!weapon->hasOwner()) {
-						weapon->setLocation(g->vertices[rand() % g->vertices.size()]);
-					}
-					if (!p->hasOwner()) {
-						p->setLocation(g->vertices[rand() % g->vertices.size()]);
-					}
+					weapon->setLocation(g->vertices[rand() % g->vertices.size()]);
+					p->setLocation(g->vertices[rand() % g->vertices.size()]);
+					weapon->setOwner(nullptr);
+					p->setOwner(nullptr);
 				}
 				else
 				{
@@ -96,4 +103,3 @@ int main(int args[])
 		
 	return EXIT_SUCCESS;
 }
-
