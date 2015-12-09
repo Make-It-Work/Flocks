@@ -87,7 +87,7 @@ int main(int args[])
 		
 		application->SetColor(Color(0, 0, 0, 255));
 
-		DrawService::cow(application, cow->getPosition(), cow->getState());
+		DrawService::cow(application, cow->getPosition(), cow->getState(), cow->sleepTimer);
 		DrawService::hare(application, hare->getPosition(), hare->getState());
 		if (!p->hasOwner()) { DrawService::pill(application, p->getLocation()); }
 		if (!weapon->hasOwner()) { DrawService::weapon(application, weapon->getLocation()); }
@@ -96,7 +96,7 @@ int main(int args[])
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));
 
-		if (cow->getPosition() == hare->getPosition() && cow->getState() == "wandering" && hare->getState() == "wandering") {
+		if (cow->getPosition() == hare->getPosition() && cow->getState() != "wandering" && hare->getState() != "wandering") {
 			g = new Graph(gSize);
 			cow->setPosition(g->vertices.front());
 			hare->setPosition(g->vertices[rand() % g->vertices.size()]);

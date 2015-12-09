@@ -27,7 +27,7 @@ void WanderingState::enter(Animal* animal)
 
 Vertex* WanderingState::execute(Animal* animal)
 {
-	printf("%s executing wandering state \n", animal->getType().c_str());
+	//printf("%s executing wandering state \n", animal->getType().c_str());
 	std::vector<Edge*> edges = animal->getPosition()->edges;
 	//Pick an edge
 	int randIndex = rand() % edges.size();

@@ -6,7 +6,6 @@ class Hare :
 public:
 	Hare(Vertex* start);
 	~Hare();
-	void makeAMove(Vertex* target);
 	void update();
 	void changeState(AnimalState* new_state);
 
@@ -15,6 +14,7 @@ public:
 	int fleeSuccess = 1;
 	int gunSuccess = 1;
 	int pillSuccess = 1;
-	std::string countHelper;
+	int counter = 0;
+	std::string countHelper = "none";
 };
 

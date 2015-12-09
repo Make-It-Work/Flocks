@@ -43,8 +43,8 @@ Vertex* Animal::makeAStarMove(Vertex* target) {
 				}
 			}
 		}
-		printf("moving from %i to %i \n", position->id, target->id);
-		printf("====path======== \n");
+		//printf("moving from %i to %i \n", position->id, target->id);
+		//printf("====path======== \n");
 		Vertex* ret = position;
 		Vertex* next = target;
 		bool found = false;
@@ -64,7 +64,7 @@ Vertex* Animal::makeAStarMove(Vertex* target) {
 			}
 			for (auto entry : came_from)
 			{
-				printf("%i from %i \n", entry.first->id, entry.second->id);
+				//printf("%i from %i \n", entry.first->id, entry.second->id);
 				//printf("%i goes to %i \n", entry.second->id, entry.first->id);
 				if (entry.second == position)
 				{
@@ -72,10 +72,10 @@ Vertex* Animal::makeAStarMove(Vertex* target) {
 					//next = entry.first;
 				}
 			}
-			printf("Stepping to %i \n", ret->id);
+			//printf("Stepping to %i \n", ret->id);
 		}
 		if (ret == target) {
-			printf("--- GOT IT --- \n");
+			//printf("--- GOT IT --- \n");
 		}
 		return ret;
 }

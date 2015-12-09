@@ -25,10 +25,10 @@ void DrawService::DrawEdge(FWApplication* app, Edge* e)
 	app->DrawLine(e->first->x, e->first->y, e->second->x, e->second->y);
 }
 
-void DrawService::cow(FWApplication* app, Vertex* v, std::string state)
+void DrawService::cow(FWApplication* app, Vertex* v, std::string state, int sleep)
 {
 	app->DrawTexture(app->LoadTexture("cow-2.png"), v->x, v->y, 48, 48);
-	app->DrawText(state, v->x, v->y - 30);
+	app->DrawText(std::string(state + " " + std::to_string(sleep)), v->x, v->y - 30);
 }
 
 void DrawService::hare(FWApplication* app, Vertex* v, std::string state)
