@@ -20,6 +20,24 @@
     <ClCompile Include="FWApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseGameEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -33,6 +51,27 @@
     </ClInclude>
     <ClInclude Include="IGameObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseGameEntity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hare.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingEntity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviors.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawService.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

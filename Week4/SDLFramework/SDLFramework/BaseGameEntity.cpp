@@ -1,9 +1,10 @@
 #include "BaseGameEntity.h"
+#include "Vector2.h"
 
 
-
-BaseGameEntity::BaseGameEntity()
+BaseGameEntity::BaseGameEntity(Vector2 position)
 {
+	pos = position;
 }
 
 

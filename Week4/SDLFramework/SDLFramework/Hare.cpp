@@ -1,7 +1,10 @@
 #include "Hare.h"
+#include "Vector2.h"
 
-Hare::Hare()
+Hare::Hare(Vector2 vel, Vector2 head, Vector2 position)
+	:MovingEntity(vel, head, pos)
 {
+
 }
 
 
@@ -13,8 +16,18 @@ void Hare::update(double time_elapsed) {
 	Vector2 steeringForce = m_pSteering->calculate();
 	Vector2 acceleration = steeringForce / m_dMass;
 	m_vVelocity += acceleration * time_elapsed;
-	//m_vVelocity.truncate(m_dMaxSpeed); Zorg ervoor dat hij niet harder gaat dan zijn max
-	xPos += m_vVelocity.x * time_elapsed;
-	yPos += m_vVelocity.y * time_elapsed;
+	m_vVelocity.truncate(m_dMaxSpeed); //Zorg ervoor dat hij niet harder gaat dan zijn max
+	pos.x += m_vVelocity.x * time_elapsed;
+	pos.y += m_vVelocity.y * time_elapsed;
+
+	//update the heading if the vehicle has a velocity greater than a very small
+	//value
+	if (m_vVelocity.length() > 0.00000001)
+	{
+		m_vHeading = m_vVelocity.normalized();
+		m_vSide = m_vHeading.perpendicular();
+		//treat the screen as a toroid
+	}
+	WrapAround(pos.x, pos.y);
 
 }

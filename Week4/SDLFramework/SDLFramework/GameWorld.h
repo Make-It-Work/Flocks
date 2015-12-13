@@ -9,8 +9,8 @@ public:
 	~GameWorld();
 
 private:
-	double width;
-	double height;
+	double width = 800;
+	double height = 600;
 
 	std::vector<BaseGameEntity*> gameObjects;
 };

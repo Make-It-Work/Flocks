@@ -1,17 +1,20 @@
 #pragma once
 #include <string>
+#include "Vector2.h"
+
 class BaseGameEntity
 {
 protected:
 	std::string type;
-	double xPos;
-	double yPos;
+	Vector2 pos = Vector2(0,0);
 	double boundingRadius;
 	double scale;
 	bool m_bTag;
 public:
-	BaseGameEntity();
+	BaseGameEntity(Vector2 position);
 	~BaseGameEntity();
+
+	Vector2 getPos() { return pos; };
 };
 
 
