@@ -85,6 +85,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseGameEntity.cpp" />
+    <ClCompile Include="BehaviourMachine.cpp" />
+    <ClCompile Include="Cow.cpp" />
     <ClCompile Include="DrawService.cpp" />
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="GameWorld.cpp" />
@@ -98,7 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
+    <ClInclude Include="BehaviourMachine.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="Cow.h" />
     <ClInclude Include="DrawService.h" />
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="GameWorld.h" />

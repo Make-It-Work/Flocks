@@ -38,6 +38,12 @@
     <ClCompile Include="DrawService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourMachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
@@ -71,6 +77,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="DrawService.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourMachine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cow.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

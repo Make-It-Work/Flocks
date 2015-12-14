@@ -9,6 +9,8 @@
 #include "MovingEntity.h"
 #include "DrawService.h"
 #include "Hare.h"
+#include "Cow.h"
+#include <vector>
 
 int main(int args[])
 {
@@ -22,15 +24,15 @@ int main(int args[])
 	
 	application->SetTargetFPS(60);
 	application->SetColor(Color(255, 10, 40, 255));
-	Vector2 v2 = Vector2(8, 4);
+	Vector2 v2 = Vector2(-8, -4);
 	printf("v2 l %f \n", (double)v2.length());
 	v2.truncate(3);
 	printf("v2 l %f x %f y %f \n", (double)v2.length(), v2.x, v2.y);
-
-	Hare me = Hare(Vector2(1,0), Vector2(0,1), Vector2(100,100));
-	printf("x %i y %i \n", me.getPos().x, me.getPos().y);
-	me.update(0.0001);
-	printf("x %i y %i \n", me.getPos().x, me.getPos().y);
+	std::vector<Cow*>* cows = new std::vector < Cow*>();
+	Hare me = Hare(Vector2(200,400));
+	Cow c = Cow(Vector2(400, 400), &me);
+	me.prey = &c;
+	printf("x %f y %f \n", me.getPos().x, me.getPos().y);
 	//while (true){}
 	while (application->IsRunning())
 	{
@@ -52,10 +54,15 @@ int main(int args[])
 				}
 			}
 		}
+		me.update(0.5);
+		c.update(0.5);
+		//printf("x %f y %f \n", me.getPos().x, me.getPos().y);
 		
 		application->SetColor(Color(0, 0, 0, 255));
-		application->DrawText("Welcome to KMint", 800 / 2, 600 / 2);
-		DrawService::basegame(application, me);
+		DrawService::hare(application, me);
+		DrawService::cow(application, c);
+		DrawService::point(application, c.projection);
+		//printf("hx %f hy %f \n", me.getPos().x, me.getPos().y);
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));
 		application->UpdateGameObjects();

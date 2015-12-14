@@ -1,17 +1,12 @@
 #include "Cow.h"
-#include <unordered_map>
-#include <queue>
-#include "Edge.h"
-#include "WanderingState.h"
-#include "SearchingState.h"
-#include "HuntingState.h"
-#include "AnimalState.h"
-#include "Item.h"
+#include "Vector2.h"
+#include "BehaviourMachine.h"
 
-Cow::Cow(Vertex* start)
+Cow::Cow(Vector2 position, Hare* h)
+	:MovingEntity(position, 8)
 {
-	position = start;
-	current_state = HuntingState::cowHuntingInstance();
+	m_pSteering = new SteeringBehaviors(this);
+	prey = h;
 }
 
 
@@ -19,17 +14,22 @@ Cow::~Cow()
 {
 }
 
-void Cow::update() {
-	if (sleepTimer > 0)
-	{
-		sleepTimer--;
-	}else if (current_state != nullptr) {
-		position = current_state->execute(this);
-	}
-}
+void Cow::update(double time_elapsed) {
+	Vector2 steeringForce = BehaviourMachine::Behave(this);
+	Vector2 acceleration = steeringForce / m_dMass;
+	m_vVelocity += acceleration * time_elapsed;
+	m_vVelocity.truncate(m_dMaxSpeed); //Zorg ervoor dat hij niet harder gaat dan zijn max
+	pos.x += m_vVelocity.x * time_elapsed;
+	pos.y += m_vVelocity.y * time_elapsed;
 
-void Cow::changeState(AnimalState* new_state) {
-	current_state->exit(this);
-	current_state = new_state;
-	new_state->enter(this);
+	//update the heading if the vehicle has a velocity greater than a very small
+	//value
+	if (m_vVelocity.length() > 0.00000001)
+	{
+		m_vHeading = m_vVelocity.normalized();
+		m_vSide = m_vHeading.perpendicular();
+		//treat the screen as a toroid
+	}
+	WrapAround(pos.x, pos.y);
+
 }

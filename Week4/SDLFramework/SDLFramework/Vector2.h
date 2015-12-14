@@ -11,15 +11,17 @@ struct Vector2
 	}
 
 	Vector2 operator/(double scale) {
-		x = x / scale;
-		y = y / scale;
-		return *this;
+		Vector2 ret = Vector2(x, y);
+		ret.x = x / scale;
+		ret.y = y / scale;
+		return ret;
 	}
 
 	Vector2 operator*(double scale) {
-		x = x*scale;
-		y = y*scale;
-		return *this;
+		Vector2 ret = Vector2(x, y);
+		ret.x = x*scale;
+		ret.y = y*scale;
+		return ret;
 	}
 
 	Vector2 operator+=(Vector2 vec) {
@@ -30,12 +32,15 @@ struct Vector2
 
 
 	Vector2 operator-(Vector2 vec) {
-		x = x - vec.x;
-		y = y - vec.y;
-		return *this;
+		Vector2 ret = Vector2(x, y);
+		ret.x = x - vec.x;
+		ret.y = y - vec.y;
+		return ret;
 	}
+
 	void truncate(double maxSpeed) 
 	{
+		if (length() == 0) return;
 		double mod = maxSpeed / length();
 		x *= mod;
 		y *= mod;
@@ -62,5 +67,11 @@ struct Vector2
 	static double dist(Vector2 first, Vector2 second)
 	{
 		return Vector2(first.x - second.x, first.y - second.y).length();
+	}
+
+	void wrap()
+	{
+		x = (x > 800) ? x - 800 : (x < 0) ? x + 800 : x;
+		y = (y > 600) ? y - 600 : (y < 0) ? y + 600 : y;
 	}
 };

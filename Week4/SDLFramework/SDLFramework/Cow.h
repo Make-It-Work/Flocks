@@ -1,14 +1,18 @@
 #pragma once
-#include "Animal.h"
-class Cow :
-	public Animal
+#include "MovingEntity.h"
+#include "GameWorld.h"
+#include "SteeringBehaviors.h"
+#include "Hare.h"
+
+class Cow : public MovingEntity
 {
+protected:
+	GameWorld* gameWorld;
 public:
-	Cow(Vertex* start);
+	Cow(Vector2 position, Hare* h);
 	~Cow();
-	void makeAMove(Vertex* target);
-	void update();
-	void changeState(AnimalState* new_state);
-	std::string getType() { return "Cow"; }
+	void update(double time_elapsed);
+
+	Vector2 projection = Vector2(0, 0);
 };
 

@@ -12,10 +12,12 @@ public:
 
 	Vector2 Wander();
 	Vector2 Seek(Vector2 TargetPos);
-	Vector2 Flee(Vector2 TargetPos);
+	Vector2 Flee();
 	Vector2 Arrive(Vector2 TargetPos, Deceleration deceleration);
-	Vector2 SteeringBehaviors::Pursuit(MovingEntity* evader);
+	Vector2 SteeringBehaviors::Pursuit();
 private:
-	MovingEntity* vehicle;
+	MovingEntity* vehicle = nullptr;
+
+	double travelTime(Vector2 TargetPos);
 };
 
