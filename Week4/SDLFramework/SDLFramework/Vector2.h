@@ -30,6 +30,17 @@ struct Vector2
 		return *this;
 	}
 
+	Vector2 operator/=(double num) {
+		x = num / x;
+		y = num / y;
+		return *this;
+	}
+
+	Vector2 operator-=(Vector2 vec) {
+		x - vec.x;
+		y - vec.y;
+		return *this;
+	}
 
 	Vector2 operator-(Vector2 vec) {
 		Vector2 ret = Vector2(x, y);

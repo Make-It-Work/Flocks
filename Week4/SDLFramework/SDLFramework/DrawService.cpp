@@ -10,12 +10,14 @@ void DrawService::point(FWApplication* app, Vector2 pt)
 }
 
 
-void DrawService::hare(FWApplication* app, Hare h) 
+void DrawService::hare(FWApplication* app, Hare* h) 
 {
-	app->DrawTexture(app->LoadTexture("rabbit-2.png"), h.getPos().x, h.getPos().y, 48, 48);
+	app->DrawTexture(app->LoadTexture("rabbit-2.png"), h->getPos().x, h->getPos().y, 48, 48);
+	app->DrawText(h->getBehaviour(), h->getPos().x, h->getPos().y + 30);
 }
 
-void DrawService::cow(FWApplication* app, Cow c)
+void DrawService::cow(FWApplication* app, Cow* c)
 {
-	app->DrawTexture(app->LoadTexture("cow-2.png"), c.getPos().x, c.getPos().y, 48, 48);
+	app->DrawTexture(app->LoadTexture("cow-2.png"), c->getPos().x, c->getPos().y, 48, 48);
+	app->DrawText(c->getBehaviour(), c->getPos().x, c->getPos().y + 30);
 }

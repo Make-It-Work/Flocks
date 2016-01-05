@@ -31,5 +31,8 @@ void Cow::update(double time_elapsed) {
 		//treat the screen as a toroid
 	}
 	WrapAround(pos.x, pos.y);
+}
 
+void Cow::tagNeighbours(GameWorld* gameWorld) {
+	neighbours = gameWorld->getCows(pos, 50);
 }

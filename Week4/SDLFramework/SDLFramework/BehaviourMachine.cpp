@@ -4,10 +4,10 @@
 
 Vector2 BehaviourMachine::Behave(Cow* c)
 {
-	return c->getSteering()->Pursuit();
+	return c->getSteering()->calculate();
 }
 
 Vector2 BehaviourMachine::Behave(Hare* h)
 {
-	return h->getSteering()->Flee();
+	return h->getSteering()->calculate();
 }

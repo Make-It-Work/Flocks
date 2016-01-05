@@ -27,7 +27,8 @@ protected:
 	SteeringBehaviors* m_pSteering = nullptr;
 public:
 	MovingEntity(Vector2 position,double maxSpeed);
-	~MovingEntity();
+	virtual ~MovingEntity() = 0;
+	virtual void update(double time_elapsed) = 0;
 
 	double getMaxSpeed() { return m_dMaxSpeed; };
 	Vector2 getVelocity() { return m_vVelocity; };

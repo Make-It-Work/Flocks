@@ -5,7 +5,8 @@
 #include <time.h>
 #include "Cow.h"
 #include <typeinfo>
-
+#include "Vector2.h"
+#include "BaseGameEntity.h"
 SteeringBehaviors::SteeringBehaviors(MovingEntity* v)
 {
 	srand(time(NULL));
@@ -19,6 +20,30 @@ SteeringBehaviors::~SteeringBehaviors()
 
 Vector2 SteeringBehaviors::calculate() 
 {
+	Cow* c = dynamic_cast<Cow*>(vehicle);
+	if (c != NULL) {
+		//Calculate forces and stuff
+		Vector2 finalHeading = Vector2(0, 0);
+		Vector2 sep = Separation(c->getNeighbours());
+		Vector2 coh = Cohesion(c->getNeighbours());
+		Vector2 ali = Alignment(c->getNeighbours());
+
+		Vector2 per = Pursuit();
+
+		finalHeading += sep;
+		finalHeading += coh;
+		finalHeading += ali;
+		finalHeading += ali;
+		finalHeading += ali;
+		finalHeading += ali;
+		finalHeading += per;
+		finalHeading /= 7;
+
+		return finalHeading;
+
+
+	}
+
 	return Wander();
 }
 
@@ -26,6 +51,7 @@ Vector2 SteeringBehaviors::Wander()
 {
 	Vector2 vec = Vector2(10 - std::rand() % 20, 10 - std::rand() % 20);
 	vec.truncate(vehicle->getMaxSpeed());
+	vehicle->setBehaviour("Wander");
 	return vec;
 }
 
@@ -36,6 +62,7 @@ Vector2 SteeringBehaviors::Seek(Vector2 TargetPos)
 	DesiredVelocity.truncate(vehicle->getMaxSpeed());
 	DesiredVelocity.x -= vehicle->getVelocity().x;
 	DesiredVelocity.y -= vehicle->getVelocity().y;
+	vehicle->setBehaviour("Seek");
 	return DesiredVelocity;
 
 }
@@ -44,17 +71,20 @@ Vector2 SteeringBehaviors::Flee()
 {
 	Hare* h = (Hare*)vehicle;
 	Vector2 TargetPos = h->prey->getPos();
+	Vector2 heading = Vector2(0, 0);
 	
-	if (Vector2::dist(vehicle->getPos(), TargetPos) > 100)
+	if (Vector2::dist(vehicle->getPos(), TargetPos) > 150)
 	{
 		return Wander();
 	}
-	return Seek(TargetPos) * -1;
-
+	heading = Seek(TargetPos) * -1;
+	vehicle->setBehaviour("Flee");
+	return heading;
 }
 
 Vector2 SteeringBehaviors::Arrive(Vector2 TargetPos, Deceleration deceleration)
 {
+	vehicle->setBehaviour("Arrive");
 	Vector2 ToTarget = TargetPos - vehicle->getPos();
 	double dist = Vector2::dist(vehicle->getPos(), TargetPos);
 	if (dist > 0)
@@ -88,13 +118,92 @@ Vector2 SteeringBehaviors::Pursuit()
 	projectedPoint += evader->getPos();
 	projectedPoint.wrap();
 	c->projection = projectedPoint;
+	Vector2 heading = Vector2(0, 0);
 
 	if ((Vector2::dist(vehicle->getPos(), evader->getPos()) < 150) || (Vector2::dist(vehicle->getPos(), projectedPoint) < 20))
 	{
 		return Seek(evader->getPos());
 	}
-	return Seek(projectedPoint);
+	heading = Seek(projectedPoint);
+	vehicle->setBehaviour("Pursuit");
+	return heading;
 }
+
+Vector2 SteeringBehaviors::Separation(std::vector<Cow*> neighbors)
+{
+	vehicle->setBehaviour("Separation");
+	Vector2 SteeringForce = Vector2(0, 0);
+	for (int a = 0; a < neighbors.size(); ++a)
+	{
+		//make sure this agent isn't included in the calculations and that
+		//the agent being examined is close enough.
+		if ((neighbors[a] != vehicle))
+		{
+			Vector2 ToAgent = vehicle->getPos() - neighbors[a]->getPos();
+			//scale the force inversely proportional to the agent's distance
+			//from its neighbor.
+			SteeringForce += ToAgent.normalized() / ToAgent.length();
+		}
+	}
+	return SteeringForce;
+}
+
+Vector2 SteeringBehaviors::Alignment(std::vector<Cow*> neighbors)
+{
+	vehicle->setBehaviour("Alignment");
+	//used to record the average heading of the neighbors
+	Vector2 AverageHeading = Vector2(0, 0);
+	//used to count the number of vehicles in the neighborhood
+	int NeighborCount = 0;
+	//iterate through all the tagged vehicles and sum their heading vectors
+	for (int a = 0; a<neighbors.size(); ++a)
+	{
+		//make sure *this* agent isn't included in the calculations and that
+		//the agent being examined is close enough
+		if ((neighbors[a] != vehicle))
+		{
+			AverageHeading += neighbors[a]->getHeading();
+			++NeighborCount;
+		}
+	}
+	//if the neighborhood contained one or more vehicles, average their
+	//heading vectors.
+	if (NeighborCount > 0)
+	{
+		AverageHeading /= (double)NeighborCount;
+		AverageHeading -= vehicle->getHeading();
+	}
+	return AverageHeading;
+}
+
+Vector2 SteeringBehaviors::Cohesion(std::vector<Cow*> neighbors)
+{
+	vehicle->setBehaviour("Cohesion");
+	//first find the center of mass of all the agents
+	Vector2 CenterOfMass = Vector2(0, 0);
+	Vector2 SteeringForce = Vector2(0,0);
+	int NeighborCount = 0;
+	//iterate through the neighbors and sum up all the position vectors
+	for (int a = 0; a<neighbors.size(); ++a)
+	{
+		//make sure *this* agent isn't included in the calculations and that
+		//the agent being examined is a neighbor
+		if ((neighbors[a] != vehicle))
+		{
+			CenterOfMass += neighbors[a]->getPos();
+			++NeighborCount;
+		}
+	}
+	if (NeighborCount > 0)
+	{
+		//the center of mass is the average of the sum of positions
+		CenterOfMass /= (double)NeighborCount;
+		//now seek toward that position
+		SteeringForce = Seek(CenterOfMass);
+	}
+	return SteeringForce;
+}
+
 
 double SteeringBehaviors::travelTime(Vector2 TargetPos)
 {

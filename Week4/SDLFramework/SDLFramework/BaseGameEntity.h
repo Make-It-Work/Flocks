@@ -10,9 +10,14 @@ protected:
 	double boundingRadius;
 	double scale;
 	bool m_bTag;
+	std::string behaviour = "";
 public:
 	BaseGameEntity(Vector2 position);
-	~BaseGameEntity();
+	virtual ~BaseGameEntity() = 0;
+	virtual void update(double time_elapsed) = 0;
+
+	void setBehaviour(std::string s) { behaviour = s; }
+	std::string getBehaviour() { return behaviour; }
 
 	Vector2 getPos() { return pos; };
 };

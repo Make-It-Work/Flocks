@@ -3,6 +3,9 @@
 class Hare :
 	public Animal
 {
+private:
+	int feelsafe = 150;
+	int threatened = 100;
 public:
 	Hare(Vertex* start);
 	~Hare();

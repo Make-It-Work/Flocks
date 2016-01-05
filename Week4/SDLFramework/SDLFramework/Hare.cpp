@@ -29,5 +29,4 @@ void Hare::update(double time_elapsed) {
 		//treat the screen as a toroid
 	}
 	WrapAround(pos.x, pos.y);
-
 }
