@@ -34,5 +34,9 @@ void Cow::update(double time_elapsed) {
 }
 
 void Cow::tagNeighbours(GameWorld* gameWorld) {
-	neighbours = gameWorld->getCows(pos, 50);
+	neighbours = gameWorld->getCows(pos, 100);
+}
+
+void Cow::flock() {
+	m_pSteering->flock();
 }

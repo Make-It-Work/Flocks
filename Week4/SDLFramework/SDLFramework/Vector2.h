@@ -31,8 +31,8 @@ struct Vector2
 	}
 
 	Vector2 operator/=(double num) {
-		x = num / x;
-		y = num / y;
+		x = x/num;
+		y = y/num;
 		return *this;
 	}
 

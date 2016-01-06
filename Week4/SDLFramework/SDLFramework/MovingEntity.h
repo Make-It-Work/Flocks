@@ -33,6 +33,7 @@ public:
 	double getMaxSpeed() { return m_dMaxSpeed; };
 	Vector2 getVelocity() { return m_vVelocity; };
 	Vector2 getHeading() { return m_vHeading; };
+	void setHeading(Vector2 vec) { m_vHeading = vec; }
 	SteeringBehaviors* getSteering() { return m_pSteering; };
 
 	MovingEntity* prey = nullptr;

@@ -24,26 +24,34 @@ Vector2 SteeringBehaviors::calculate()
 	if (c != NULL) {
 		//Calculate forces and stuff
 		Vector2 finalHeading = Vector2(0, 0);
+
+		Vector2 per = Pursuit();
+		
+		finalHeading += per;
+		finalHeading /= 1;
+
+		vehicle->setHeading(finalHeading);
+
+		return finalHeading;
+	}
+
+	return Wander();
+}
+
+Vector2 SteeringBehaviors::flock()
+{
+	Cow* c = dynamic_cast<Cow*>(vehicle);
+	if (c != NULL) {
+		Vector2 finalHeading = Vector2(0, 0);
 		Vector2 sep = Separation(c->getNeighbours());
 		Vector2 coh = Cohesion(c->getNeighbours());
 		Vector2 ali = Alignment(c->getNeighbours());
-
-		Vector2 per = Pursuit();
-
 		finalHeading += sep;
 		finalHeading += coh;
 		finalHeading += ali;
-		finalHeading += ali;
-		finalHeading += ali;
-		finalHeading += ali;
-		finalHeading += per;
-		finalHeading /= 7;
-
+		finalHeading /= 3;
 		return finalHeading;
-
-
 	}
-
 	return Wander();
 }
 
@@ -62,7 +70,6 @@ Vector2 SteeringBehaviors::Seek(Vector2 TargetPos)
 	DesiredVelocity.truncate(vehicle->getMaxSpeed());
 	DesiredVelocity.x -= vehicle->getVelocity().x;
 	DesiredVelocity.y -= vehicle->getVelocity().y;
-	vehicle->setBehaviour("Seek");
 	return DesiredVelocity;
 
 }
@@ -131,7 +138,6 @@ Vector2 SteeringBehaviors::Pursuit()
 
 Vector2 SteeringBehaviors::Separation(std::vector<Cow*> neighbors)
 {
-	vehicle->setBehaviour("Separation");
 	Vector2 SteeringForce = Vector2(0, 0);
 	for (int a = 0; a < neighbors.size(); ++a)
 	{
@@ -150,7 +156,6 @@ Vector2 SteeringBehaviors::Separation(std::vector<Cow*> neighbors)
 
 Vector2 SteeringBehaviors::Alignment(std::vector<Cow*> neighbors)
 {
-	vehicle->setBehaviour("Alignment");
 	//used to record the average heading of the neighbors
 	Vector2 AverageHeading = Vector2(0, 0);
 	//used to count the number of vehicles in the neighborhood
@@ -171,14 +176,13 @@ Vector2 SteeringBehaviors::Alignment(std::vector<Cow*> neighbors)
 	if (NeighborCount > 0)
 	{
 		AverageHeading /= (double)NeighborCount;
-		AverageHeading -= vehicle->getHeading();
 	}
-	return AverageHeading;
+	vehicle->setHeading(AverageHeading);
+	return vehicle ->getHeading();
 }
 
 Vector2 SteeringBehaviors::Cohesion(std::vector<Cow*> neighbors)
 {
-	vehicle->setBehaviour("Cohesion");
 	//first find the center of mass of all the agents
 	Vector2 CenterOfMass = Vector2(0, 0);
 	Vector2 SteeringForce = Vector2(0,0);

@@ -89,6 +89,14 @@ int main(int args[])
 				DrawService::cow(application, cow);
 			}
 		}
+		for each (BaseGameEntity* c in gameWorld->getObjects())
+		{
+			Cow* cow = dynamic_cast<Cow*>(c);
+			if (cow != NULL) {
+				cow->flock();
+				DrawService::cow(application, cow);
+			}
+		}
 		DrawService::point(application, c->projection);
 		//printf("hx %f hy %f \n", me.getPos().x, me.getPos().y);
 		// For the background

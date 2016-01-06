@@ -11,7 +11,7 @@ public:
 	~SteeringBehaviors();
 
 	Vector2 calculate();
-
+	Vector2 flock();
 	Vector2 Wander();
 	Vector2 Seek(Vector2 TargetPos);
 	Vector2 Flee();
