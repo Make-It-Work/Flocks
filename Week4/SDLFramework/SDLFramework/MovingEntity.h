@@ -13,14 +13,14 @@ protected:
 	//a vector perpendicular to the heading vector
 	Vector2 m_vSide = Vector2(0, 0);
 
-	double m_dMass = 5;
+	double m_dMass = 2;
 	//the maximum speed at which this entity may travel.
-	double m_dMaxSpeed = 5;
+	double m_dMaxSpeed = 0.1;
 	//the maximum force this entity can produce to power itself
 	//(think rockets and thrust)
 	double m_dMaxForce = 10;
 	//the maximum rate (radians per second) at which this vehicle can rotate
-	double m_dMaxTurnRate = 0.1;
+	double m_dMaxTurnRate = 1;
 
 	void WrapAround(int x, int y);
 

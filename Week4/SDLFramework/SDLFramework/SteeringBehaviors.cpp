@@ -46,8 +46,8 @@ Vector2 SteeringBehaviors::flock()
 		Vector2 sep = Separation(c->getNeighbours());
 		Vector2 coh = Cohesion(c->getNeighbours());
 		Vector2 ali = Alignment(c->getNeighbours());
-		finalHeading += sep;
 		finalHeading += coh;
+		finalHeading += sep;
 		finalHeading += ali;
 		finalHeading /= 3;
 		return finalHeading;
@@ -148,7 +148,8 @@ Vector2 SteeringBehaviors::Separation(std::vector<Cow*> neighbors)
 			Vector2 ToAgent = vehicle->getPos() - neighbors[a]->getPos();
 			//scale the force inversely proportional to the agent's distance
 			//from its neighbor.
-			SteeringForce += ToAgent.normalized() / ToAgent.length();
+			ToAgent.truncate(10);
+			SteeringForce += ToAgent / ToAgent.length();
 		}
 	}
 	return SteeringForce;
@@ -192,7 +193,7 @@ Vector2 SteeringBehaviors::Cohesion(std::vector<Cow*> neighbors)
 	{
 		//make sure *this* agent isn't included in the calculations and that
 		//the agent being examined is a neighbor
-		if ((neighbors[a] != vehicle))
+		if ((neighbors[a] != vehicle) && neighbors[a]->getPos().dist(neighbors[a]->getPos(), vehicle->getPos()) > 100)
 		{
 			CenterOfMass += neighbors[a]->getPos();
 			++NeighborCount;

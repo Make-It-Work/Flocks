@@ -93,6 +93,8 @@ int main(int args[])
 		{
 			Cow* cow = dynamic_cast<Cow*>(c);
 			if (cow != NULL) {
+				cow->clearNeighbours();
+				cow->tagNeighbours(gameWorld);
 				cow->flock();
 				DrawService::cow(application, cow);
 			}

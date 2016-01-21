@@ -16,6 +16,8 @@ Cow::~Cow()
 
 void Cow::update(double time_elapsed) {
 	Vector2 steeringForce = BehaviourMachine::Behave(this);
+	steeringForce += m_pSteering->flock();
+	//steeringForce /= 2;
 	Vector2 acceleration = steeringForce / m_dMass;
 	m_vVelocity += acceleration * time_elapsed;
 	m_vVelocity.truncate(m_dMaxSpeed); //Zorg ervoor dat hij niet harder gaat dan zijn max
